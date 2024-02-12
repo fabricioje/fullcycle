@@ -15,13 +15,13 @@ connection.query(sql)
 
 
 app.get('/', (req, res) => {
-    res.send('<h1>Full Cycle Rocks!</h1>')
+    msg = '<h1>Full Cycle Rocks!</h1> \n'
 
     var sql = "SELECT * FROM people limit 1";
     connection.query(sql, function (error, results, fields) {
       if (error) return console.log(error)
       connection.end()
-      res.send(results[0]['name'])
+      res.send(msg.concat(' ', results[0]['name']) )
     })
 })
 
