@@ -1,0 +1,56 @@
+version: '3'
+
+services:
+
+  db:
+    platform: linux/x86_64
+    image: mysql:5.7
+    container_name: db
+    hostname: db
+    restart: always
+    tty: true
+    volumes:
+      - ./mysql:/var/lib/mysql
+    environment:
+      - MYSQL_DATABASE=nodedb
+      - MYSQL_ROOT_PASSWORD=root
+    ports:
+      - "3306:3306"
+    networks:
+      - nodenet
+    healthcheck:
+      test: "/usr/bin/mysql --user=root --password=root --execute \"SHOW DATABASES;\""
+      interval: 2s
+      timeout: 20s
+      retries: 10
+    # command: 'create table people(id int not null auto_increment, name varchar(255), primary key (id));'
+  nodejs:
+    build:
+      context: node
+    container_name: nodejs
+    hostname: nodejs
+    networks:
+      - nodenet
+    volumes:
+      - ./node:/usr/src/app
+    tty: true
+    ports:
+      - "3000:3000"
+    depends_on:
+      db:
+        condition: service_healthy
+  nginx:
+    build:
+      context: nginx
+    container_name: nginx
+    networks:
+      - nodenet
+    tty: true
+    ports:
+      - "80:80"
+    depends_on:
+      - nodejs
+
+networks:
+  nodenet:
+    driver: bridge
