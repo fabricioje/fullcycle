@@ -14,10 +14,8 @@ var sql = `INSERT INTO people(name) values ('Um nome')`
 connection.query(sql)
 
 
-// connection.end()
-
 app.get('/', (req, res) => {
-    console.log('ENTROU ###### ')
+    res.send('<h1>Full Cycle Rocks!</h1>')
 
     var sql = "SELECT * FROM people limit 1";
     connection.query(sql, function (error, results, fields) {
