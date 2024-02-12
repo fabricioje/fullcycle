@@ -23,7 +23,6 @@ services:
       interval: 2s
       timeout: 20s
       retries: 10
-    # command: 'create table people(id int not null auto_increment, name varchar(255), primary key (id));'
   nodejs:
     build:
       context: node
@@ -47,7 +46,7 @@ services:
       - nodenet
     tty: true
     ports:
-      - "80:80"
+      - "8080:80"
     depends_on:
       - nodejs
 
