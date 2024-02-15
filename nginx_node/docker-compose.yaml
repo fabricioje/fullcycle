@@ -9,7 +9,6 @@ services:
     hostname: db
     restart: always
     tty: true
-    # command: --init-file /data/application/init.sql
     volumes:
       - ./init.sql:/docker-entrypoint-initdb.d/setup.sql
       - ./mysql:/var/lib/mysql
@@ -32,8 +31,8 @@ services:
     hostname: nodejs
     networks:
       - nodenet
-    volumes:
-      - ./node:/usr/src/app
+    # volumes:
+    #   - ./node:/usr/src/app
     tty: true
     ports:
       - "3000:3000"
