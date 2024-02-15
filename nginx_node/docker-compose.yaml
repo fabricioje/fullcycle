@@ -9,7 +9,9 @@ services:
     hostname: db
     restart: always
     tty: true
+    # command: --init-file /data/application/init.sql
     volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/setup.sql
       - ./mysql:/var/lib/mysql
     environment:
       - MYSQL_DATABASE=nodedb

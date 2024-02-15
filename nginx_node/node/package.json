@@ -1,11 +1,12 @@
 {
-  "name": "app",
+  "name": "node",
   "version": "1.0.0",
-  "description": "",
+  "description": "# Criar a tabela people no container mysql * use nodedb; * create table people(id int not null auto_increment, name varchar(255), primary key (id));",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {

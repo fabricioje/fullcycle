@@ -13,6 +13,7 @@ const connection = mysql.createConnection(config)
 var sql = `INSERT INTO people(name) values ('Um nome')`
 connection.query(sql)
 
+// console.log('RODANDO')
 
 app.get('/', (req, res) => {
     msg = '<h1>Full Cycle Rocks!</h1> \n'
