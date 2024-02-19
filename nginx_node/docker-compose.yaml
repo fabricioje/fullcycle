@@ -29,10 +29,11 @@ services:
       context: node
     container_name: nodejs
     hostname: nodejs
+    entrypoint: sh -c "npm install && node index.js"
     networks:
       - nodenet
-    # volumes:
-    #   - ./node:/usr/src/app
+    volumes:
+      - ./node:/usr/src/app
     tty: true
     ports:
       - "3000:3000"
