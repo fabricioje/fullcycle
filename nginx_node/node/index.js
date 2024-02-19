@@ -7,13 +7,15 @@ const config = {
     password: 'root',
     database: 'nodedb'
 }
-const mysql = require('mysql')
-const connection = mysql.createConnection(config)
-
-var sql = `INSERT INTO people(name) values ('Um nome')`
-connection.query(sql)
 
 app.get('/', (req, res) => {
+
+  const mysql = require('mysql')
+  const connection = mysql.createConnection(config)
+  
+  var sql = `INSERT INTO people(name) values ('Um nome')`
+  connection.query(sql)
+
     msg = '<h1>Full Cycle Rocks!</h1> \n'
 
     var sql = "SELECT * FROM people limit 1";
